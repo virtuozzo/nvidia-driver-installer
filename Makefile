@@ -1,3 +1,4 @@
+# Update your variables here
 FEDORA_VERSION = 39
 KERNEL_VERSION = "6.5.11-300.fc39.x86_64"
 KERNEL_SHORT = "6.5.11"
