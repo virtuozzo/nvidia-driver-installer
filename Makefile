@@ -7,7 +7,7 @@ KERNEL_ARCH = "x86_64"
 NVIDIA_DRIVER_VERSION = "550.54.15"
 IMAGE_VERSION = "1.0"
 
-CONTAINER_TAG ?= vporokhov/nvidia-driver-installer:$(FEDORA_VERSION)-$(KERNEL_VERSION)-$(NVIDIA_DRIVER_VERSION)
+CONTAINER_TAG ?= virtuozzo/nvidia-driver-installer:$(FEDORA_VERSION)-$(KERNEL_VERSION)-$(NVIDIA_DRIVER_VERSION)
 
 validate:
 	@if [ -z "$(NVIDIA_DRIVER_VERSION)" ]; then \

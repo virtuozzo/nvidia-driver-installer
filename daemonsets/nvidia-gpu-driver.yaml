@@ -37,7 +37,7 @@ spec:
         hostPath:
           path: /dev
       initContainers:
-      - image: "vporokhov/nvidia-driver-installer:39-6.5.11-300.fc39.x86_64-550.54.15"
+      - image: "virtuozzo/nvidia-driver-installer:39-6.5.11-300.fc39.x86_64-550.54.15"
         imagePullPolicy: Always
         name: nvidia-driver-installer
         resources:
