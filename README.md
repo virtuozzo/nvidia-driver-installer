@@ -25,6 +25,7 @@ The NVIDIA driver deployer leverages
 
 ## Driver Installation
 
+You need to disable selinux on worker nodes with GPU by using the following lable during worker group creation: selinux_mode=disabled
 
 Deploy NFD:
 
