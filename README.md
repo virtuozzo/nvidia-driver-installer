@@ -23,21 +23,38 @@ The NVIDIA driver deployer leverages
 [node-feature-discovery](https://github.com/NVIDIA/gpu-feature-discovery/tree/main/deployments/static)
 (NFD) to detect the GPU nodes for the GPU driver container to rollout.
 
-## Installation
+## Driver Installation
 
-```
-# deploy NFD
-kubectl apply -f daemonsets/node-feature-discovery.yaml
 
-# deploy GPU driver
-kubectl apply -f daemonsets/nvidia-gpu-driver.yaml
-```
+Deploy NFD:
+
+    kubectl apply -f daemonsets/node-feature-discovery.yaml
+
+Deploy GPU driver:
+
+    kubectl apply -f daemonsets/nvidia-gpu-driver.yaml
+
+Run a test pod:
+
+    kubectl apply -f https://raw.githubusercontent.com/virtuozzo/nvidia-driver-installer/main/tests/gpupod.yaml
+
+Check the logs:
+
+    kubectl logs gpu-pod
+    [Vector addition of 50000 elements]
+    Copy input data from the host memory to the CUDA device
+    CUDA kernel launch with 196 blocks of 256 threads
+    Copy output data from the CUDA device to the host memory
+    Test PASSED
+    Done
+
+Plugin is installed correctly.
 
 To test the usability of GPUs after deploying both DaemonSets, there is a
 CUDA sample set with several cases.\
 Check the `test` subdirectory for more details.
 
-## How To Build Your Own
+## How To Build Your Own Driver
 
 Clone this repo to your own machine:
 
