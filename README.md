@@ -19,6 +19,24 @@ When this is run on a minion, it will load the nvidia kmods, make the nvidia
 device files and copy the driver bins and libs to a place on the host that
 the k8s device plugin knows.
 
+The NVIDIA driver deployer leverages
+[node-feature-discovery](https://github.com/NVIDIA/gpu-feature-discovery/tree/main/deployments/static)
+(NFD) to detect the GPU nodes for the GPU driver container to rollout.
+
+## Installation
+
+```
+# deploy NFD
+kubectl apply -f daemonsets/node-feature-discovery.yaml
+
+# deploy GPU driver
+kubectl apply -f daemonsets/nvidia-gpu-driver.yaml
+```
+
+To test the usability of GPUs after deploying both DaemonSets, there is a
+CUDA sample set with several cases.\
+Check the `test` subdirectory for more details.
+
 ## How To Build Your Own
 
 Clone this repo to your own machine:

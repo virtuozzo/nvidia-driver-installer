@@ -4,23 +4,20 @@ metadata:
   name: nvidia-gpu-device-plugin
   namespace: kube-system
   labels:
-    k8s-app: nvidia-gpu-device-plugin
-    addonmanager.kubernetes.io/mode: EnsureExists
+    app.kubernetes.io/name: nvidia-gpu-device-plugin
 spec:
   selector:
     matchLabels:
-      k8s-app: nvidia-gpu-device-plugin
+      app.kubernetes.io/name: nvidia-gpu-device-plugin
   template:
     metadata:
       labels:
-        k8s-app: nvidia-gpu-device-plugin
+        app.kubernetes.io/name: nvidia-gpu-device-plugin
     spec:
       priorityClassName: system-node-critical
       nodeSelector:
         kubernetes.io/os: linux
-        nvidia.com/gpu.deploy.device-plugin: "true"
-        nvidia.com/gpu.deploy.driver: "true"
-        nvidia.com/gpu.present: "true"
+        feature.node.kubernetes.io/pci-10de.present: "true"
       tolerations:
       - operator: "Exists"
         effect: "NoExecute"
@@ -37,8 +34,8 @@ spec:
         hostPath:
           path: /dev
       initContainers:
-      - image: "virtuozzo/nvidia-driver-installer:39-6.5.11-300.fc39.x86_64-550.54.15"
-        imagePullPolicy: Always
+      - image: "ihorman/nvidia-driver-installer:39-6.5.11-300.fc39.x86_64-545.29.06"
+        imagePullPolicy: IfNotPresent
         name: nvidia-driver-installer
         resources:
           requests:
@@ -51,7 +48,7 @@ spec:
         - name: dev
           mountPath: /dev
       containers:
-      - image: "k8s.gcr.io/nvidia-gpu-device-plugin@sha256:4b036e8844920336fa48f36edeb7d4398f426d6a934ba022848deed2edbf09aa"
+      - image: "registry.k8s.io/nvidia-gpu-device-plugin@sha256:ebd0d26fb21ae9c7d11da156737006ceff085029c697a3a163774188c3328dbe"
         command: ["/usr/bin/nvidia-gpu-device-plugin", "-logtostderr", "-host-path=/opt/nvidia-driver"]
         name: nvidia-gpu-device-plugin
         resources:
