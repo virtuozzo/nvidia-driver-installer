@@ -11,7 +11,7 @@ ARG KERNEL_ARCH=x86_64
 ARG NVIDIA_DRIVER_VERSION=550.54.15
 ARG IMAGE_VERSION=1.0
 
-LABEL maintainer="Virtuozzo <vporokhov@virtuozzo.com>" \
+LABEL maintainer="Virtuozzo <dfateyev@virtuozzo.com>" \
       name="nvidia-driver-installer" \
       version="${IMAGE_VERSION}" \
       atomic.type="system" \
@@ -31,7 +31,7 @@ RUN curl -O https://kojipkgs.fedoraproject.org//packages/kernel/${KERNEL_SHORT}/
     dnf localinstall -y kernel-*.rpm && \
     dnf clean all
 
-ENV NVIDIA_DRIVER_URL "https://us.download.nvidia.com/tesla/${NVIDIA_DRIVER_VERSION}/NVIDIA-Linux-x86_64-${NVIDIA_DRIVER_VERSION}.run"
+ENV NVIDIA_DRIVER_URL "https://us.download.nvidia.com/XFree86/Linux-${KERNEL_ARCH}/${NVIDIA_DRIVER_VERSION}/NVIDIA-Linux-${KERNEL_ARCH}-${NVIDIA_DRIVER_VERSION}.run"
 
 ENV KERNEL_PATH /usr/src/kernels
 ENV NVIDIA_PATH /opt/nvidia
@@ -78,7 +78,7 @@ ARG NVIDIA_DRIVER_VERSION=550.54.15
 ARG KERNEL_ARCH=x86_64
 ARG IMAGE_VERSION=1.0
 
-LABEL maintainer="Virtuozzo <vporokhov@virtuozzo.com>" \
+LABEL maintainer="Virtuozzo <dfateyev@virtuozzo.com>" \
       name="nvidia-driver-installer" \
       version="${IMAGE_VERSION}" \
       atomic.type="system" \
